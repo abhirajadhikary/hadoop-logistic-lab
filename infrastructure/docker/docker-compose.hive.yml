@@ -1,0 +1,120 @@
+services:
+
+  postgres-hive:
+    image: postgres:16
+    container_name: postgres-hive
+    hostname: postgres-hive
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: metastore
+      POSTGRES_USER: hive
+      POSTGRES_PASSWORD: hive
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres-hive-data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hive -d metastore"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+    networks:
+      - hadoop-network
+
+
+  hive-metastore:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.hive
+
+    image: hive-custom:4.2.0
+    container_name: hive-metastore
+    hostname: hive-metastore
+    restart: unless-stopped
+
+    depends_on:
+      postgres-hive:
+        condition: service_healthy
+
+    environment:
+      SERVICE_NAME: metastore
+
+      DB_DRIVER: postgres
+
+      HADOOP_CONF_DIR: /opt/hive/conf
+
+      HIVE_CUSTOM_CONF_DIR: /opt/hive/custom-conf
+
+      METASTORE_DB_TYPE: "postgres"
+      DB_URL: "jdbc:postgresql://postgres-hive:5432/metastore"
+      DB_USER: "hive"
+      DB_PASS: "hive"
+      
+      SERVICE_OPTS: >-
+        -Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
+        -Djavax.jdo.option.ConnectionURL=jdbc:postgresql://postgres-hive:5432/metastore
+        -Djavax.jdo.option.ConnectionUserName=hive
+        -Djavax.jdo.option.ConnectionPassword=hive
+        -Dhive.metastore.warehouse.dir=/user/hive/warehouse
+
+      IS_RESUME: "false"
+
+    ports:
+      - "9083:9083"
+
+    volumes:
+          - ./hive-conf:/opt/hive/custom-conf:ro
+          - ./hadoop/conf:/opt/hadoop/etc/hadoop:ro
+
+    networks:
+      - hadoop-network
+
+
+  hive-server:
+    image: hive-custom:4.2.0
+
+    container_name: hive-server
+    hostname: hive-server
+    restart: unless-stopped
+
+    depends_on:
+      hive-metastore:
+        condition: service_started
+
+    environment:
+      SERVICE_NAME: hiveserver2
+
+      HADOOP_CONF_DIR: /opt/hive/conf
+
+      HIVE_CUSTOM_CONF_DIR: /opt/hive/custom-conf
+
+      IS_RESUME: "true"
+
+      SERVICE_OPTS: >-
+        -Dhive.metastore.uris=thrift://hive-metastore:9083
+
+    ports:
+      - "10000:10000"
+      - "10002:10002"
+
+    volumes:
+          - ./hive-conf:/opt/hive/custom-conf:ro
+          - ./hadoop/conf:/opt/hadoop/etc/hadoop:ro
+
+    networks:
+      - hadoop-network
+
+
+networks:
+  hadoop-network:
+    external: true
+    name: hadoop-network
+
+
+volumes:
+  postgres-hive-data:

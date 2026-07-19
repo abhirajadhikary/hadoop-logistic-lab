@@ -1,0 +1,48 @@
+services:
+
+  cassandra:
+
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.cassandra
+
+    image: cassandra-custom:5.0
+
+    container_name: cassandra
+
+    hostname: cassandra
+
+    restart: unless-stopped
+
+    ports:
+      - "9042:9042"
+
+    environment:
+      CASSANDRA_CLUSTER_NAME: Hadoop-Logistic-Lab
+      CASSANDRA_DC: datacenter1
+      CASSANDRA_RACK: rack1
+      MAX_HEAP_SIZE: 512M
+      HEAP_NEWSIZE: 128M
+
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+      - ../../cassandra/ingestion/data:/data:ro
+
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh -e 'DESCRIBE KEYSPACES' || exit 1"]
+      interval: 30s
+      timeout: 20s
+      retries: 10
+
+    networks:
+      - hadoop-network
+
+volumes:
+
+  cassandra-data:
+
+networks:
+
+  hadoop-network:
+    external: true
+    name: hadoop-network
