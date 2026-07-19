@@ -1,0 +1,31 @@
+FROM eclipse-temurin:17-jre
+
+ARG KAFKA_VERSION=4.1.0
+ARG SCALA_VERSION=2.13
+ARG HADOOP_VERSION=3.4.1
+
+RUN apt-get update && \
+    apt-get install -y wget tar && \
+    \
+    wget https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && \
+    tar -xzf kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt && \
+    mv /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} /opt/kafka && \
+    rm kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz && \
+    \
+    wget https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz && \
+    tar -xzf hadoop-${HADOOP_VERSION}.tar.gz -C /opt && \
+    mv /opt/hadoop-${HADOOP_VERSION} /opt/hadoop && \
+    rm hadoop-${HADOOP_VERSION}.tar.gz && \
+    \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV KAFKA_HOME=/opt/kafka
+ENV HADOOP_HOME=/opt/hadoop
+
+ENV PATH=$PATH:$KAFKA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+
+WORKDIR /opt/kafka
+
+# Format KRaft storage and start the Kafka server
+CMD /bin/bash -c "bin/kafka-storage.sh format -t \$(bin/kafka-storage.sh random-uuid) -c config/server.properties && bin/kafka-server-start.sh config/server.properties"

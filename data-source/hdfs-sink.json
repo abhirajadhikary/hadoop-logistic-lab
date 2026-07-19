@@ -1,0 +1,14 @@
+{
+  "name": "hdfs-sink-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.hdfs3.Hdfs3SinkConnector",
+    "tasks.max": "1",
+    "topics": "logistic-events",
+    "hdfs.url": "hdfs://namenode:9000",
+    "topics.dir": "/bronze/logistics",
+    "flush.size": "10",
+    "rotate.interval.ms": "30000",
+    "format.class": "io.confluent.connect.hdfs.format.json.JsonFormat",
+    "storage.class": "io.confluent.connect.hdfs.storage.HdfsStorage"
+  }
+}

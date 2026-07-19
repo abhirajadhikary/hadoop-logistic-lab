@@ -1,0 +1,45 @@
+services:
+
+  kafka:
+
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.kafka
+
+    image: kafka-custom:4.1.0
+
+    container_name: kafka
+
+    hostname: kafka
+
+    restart: unless-stopped
+
+    ports:
+          - "9092:9092"
+          - "29092:29092"
+          - "9093:9093"
+
+    volumes:
+
+      - ../kafka/server.properties:/opt/kafka/config/server.properties:ro
+
+      - ../hadoop/core-site.xml:/opt/hadoop/etc/hadoop/core-site.xml:ro
+      - ../hadoop/hdfs-site.xml:/opt/hadoop/etc/hadoop/hdfs-site.xml:ro
+      - ../hadoop/mapred-site.xml:/opt/hadoop/etc/hadoop/mapred-site.xml:ro
+      - ../hadoop/yarn-site.xml:/opt/hadoop/etc/hadoop/yarn-site.xml:ro
+
+      - ../../ingestion/kafka:/workspace
+
+      - kafka-data:/opt/kafka/kraft-combined-logs
+
+    networks:
+      - hadoop-network
+
+networks:
+
+  hadoop-network:
+    external: true
+    name: hadoop-network
+
+volumes:
+  kafka-data:

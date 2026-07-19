@@ -1,0 +1,101 @@
+shipment_id,origin,destination,weight_kg,declared_value,shipping_date
+SH00001,West Vanessatown,Lake Charlesland,462.21,3713.46,2026-05-22
+SH00002,Curtisburgh,Brightland,472.24,7607.89,2026-05-30
+SH00003,South Alicia,South Diamondmouth,232.2,5112.87,2026-06-14
+SH00004,South Jay,South John,498.28,4583.65,2026-05-29
+SH00005,Melissaburgh,Robertport,360.05,3723.18,2026-05-25
+SH00006,New Shawnstad,North Davidbury,365.09,3687.08,2026-06-26
+SH00007,Mirandaville,East Virginia,469.12,2208.12,2026-06-07
+SH00008,South Matthew,Devonton,197.21,4396.34,2026-06-09
+SH00009,Sharonborough,Port Michaelport,264.93,4493.37,2026-07-13
+SH00010,New Jeffreybury,Lake Nancy,82.96,8256.28,2026-05-21
+SH00011,Stonemouth,Port Natalie,5.03,7925.54,2026-06-02
+SH00012,Chambersborough,Davisview,277.56,8802.37,2026-06-27
+SH00013,Lake Jessica,North Michael,394.48,4782.49,2026-06-10
+SH00014,Danielleborough,Douglasshire,93.84,7937.44,2026-07-11
+SH00015,Clarkeshire,Teresaburgh,255.87,6950.99,2026-05-30
+SH00016,Lake Amberport,Jonathanburgh,3.39,5733.12,2026-07-14
+SH00017,New Sarahberg,Port Elizabethchester,111.37,4274.81,2026-07-09
+SH00018,New Christopherchester,South Jillian,429.87,2480.78,2026-07-09
+SH00019,West Tyrone,Lake Noahborough,453.18,9820.59,2026-06-19
+SH00020,Jamesfurt,North Stephentown,292.53,7202.3,2026-06-18
+SH00021,Ashleyfurt,Nancymouth,12.94,2887.1,2026-06-14
+SH00022,Kristenburgh,North Alexandraside,269.49,1613.25,2026-06-02
+SH00023,Jacobville,South Alexisport,26.97,2637.9,2026-06-26
+SH00024,Laurachester,North Robertfurt,17.25,5408.28,2026-07-12
+SH00025,Brandonville,Christophertown,145.81,6286.35,2026-06-17
+SH00026,South Michelleland,Lake Monique,364.89,1409.02,2026-06-30
+SH00027,Lake David,Davidborough,145.88,1702.22,2026-07-05
+SH00028,West Jennifer,Chapmantown,412.95,1237.03,2026-07-17
+SH00029,West Michaelhaven,Patriciafurt,226.59,4971.02,2026-07-07
+SH00030,West Nicholas,North Heidiport,400.63,7471.18,2026-06-03
+SH00031,Joelbury,Nuneztown,251.56,6109.86,2026-06-12
+SH00032,North Josephfurt,Port William,493.15,4529.93,2026-06-19
+SH00033,Jonesside,Coleside,227.99,5752.35,2026-06-09
+SH00034,Westhaven,Port Jeffreyburgh,274.99,3689.47,2026-05-29
+SH00035,Kendraville,New Paul,488.9,1756.16,2026-07-10
+SH00036,Lake Raymond,New Jessicafort,443.23,4665.64,2026-06-11
+SH00037,Edwardberg,Port Noahmouth,193.69,1479.26,2026-06-09
+SH00038,South Alexis,South Curtis,164.3,882.93,2026-06-03
+SH00039,West Ellenfurt,East Stephen,9.12,422.92,2026-06-20
+SH00040,Lake Alanside,Matthewburgh,239.19,5143.02,2026-06-06
+SH00041,Littlebury,Walkerberg,487.26,3355.49,2026-06-18
+SH00042,West Dawn,Wardville,71.02,5040.99,2026-06-02
+SH00043,Kennedychester,Blakeborough,405.23,887.93,2026-07-11
+SH00044,Anthonyside,Johnsonview,468.8,800.17,2026-05-26
+SH00045,Cynthiachester,South Melissa,284.66,9935.01,2026-07-02
+SH00046,East Jennifer,North Josefurt,30.92,4556.34,2026-05-23
+SH00047,Catherineport,East Troychester,124.38,652.95,2026-07-05
+SH00048,West Sabrina,West Markstad,124.61,5145.91,2026-07-05
+SH00049,Randystad,Jeffreyburgh,240.85,9558.53,2026-06-12
+SH00050,South Michael,New Tiffany,301.62,7482.21,2026-07-11
+SH00051,Johnnyfort,West Michelletown,191.97,363.38,2026-05-20
+SH00052,Port John,Curtiston,484.92,9602.7,2026-05-20
+SH00053,Lake Ashley,North James,147.4,7934.85,2026-06-24
+SH00054,Spencertown,Lake Johnville,482.86,8254.65,2026-06-20
+SH00055,Tinafort,Phillipsberg,224.52,67.66,2026-07-07
+SH00056,West Helen,Lake Matthewville,231.27,4389.93,2026-05-23
+SH00057,Jeremytown,South Amy,238.58,2081.16,2026-06-15
+SH00058,South Maria,Lisashire,304.06,8602.64,2026-06-28
+SH00059,Brianville,West Amandaton,383.2,2321.94,2026-06-23
+SH00060,Port James,Andrewville,318.89,1016.07,2026-05-22
+SH00061,Josephbury,Potterberg,283.18,6037.18,2026-07-09
+SH00062,Annafurt,Oliviahaven,229.97,1673.34,2026-07-13
+SH00063,North Patricia,Marcburgh,493.12,1107.35,2026-05-24
+SH00064,Wallhaven,New Jacobview,441.32,6438.22,2026-07-03
+SH00065,Blakestad,Melodyton,160.19,3854.32,2026-06-18
+SH00066,Jonesstad,West Davidton,189.33,5542.21,2026-06-17
+SH00067,Lake Amanda,Snowshire,442.72,3145.33,2026-06-28
+SH00068,Harperside,Karaberg,29.06,7888.94,2026-07-10
+SH00069,Kristenhaven,Nancyview,485.24,4519.41,2026-05-26
+SH00070,Cindyborough,Roblestown,13.47,3291.6,2026-07-09
+SH00071,North Carolynmouth,New Cheryl,67.81,7857.97,2026-06-03
+SH00072,Port Erica,Alicialand,221.76,6965.34,2026-06-21
+SH00073,South James,Jacquelinefurt,263.3,5329.64,2026-06-13
+SH00074,Thompsonhaven,Jeffreyland,176.07,3681.12,2026-06-02
+SH00075,Lake William,West Alexmouth,385.14,6291.85,2026-07-16
+SH00076,Willischester,Smithmouth,486.81,911.18,2026-07-02
+SH00077,Port Pamela,Port Jillian,482.58,2739.82,2026-06-24
+SH00078,Jamesside,Sanchezberg,251.98,4191.5,2026-06-09
+SH00079,Thomasbury,Port Louismouth,234.47,5621.26,2026-06-15
+SH00080,Thomasville,Danielleland,49.8,8319.75,2026-06-20
+SH00081,Michaelstad,South Dianaburgh,491.43,377.81,2026-06-24
+SH00082,South Timothy,Sharonborough,319.19,4214.93,2026-06-04
+SH00083,Brittanyside,Ramosbury,480.77,4959.41,2026-06-25
+SH00084,North John,West Susan,237.97,1650.28,2026-07-17
+SH00085,Port Alisonfurt,Odonnellfort,336.65,6363.78,2026-06-07
+SH00086,West Tarahaven,North Michael,302.12,1383.32,2026-06-07
+SH00087,New Juliaport,Carpenterfort,470.63,6889.28,2026-07-16
+SH00088,South Denise,Davidhaven,457.6,4610.6,2026-06-16
+SH00089,Jeffreyshire,South Nicole,248.64,8973.17,2026-07-15
+SH00090,Taylorside,North Linda,28.65,6411.73,2026-06-25
+SH00091,South Katherinechester,South Johnny,274.39,882.64,2026-07-02
+SH00092,New Paul,West Nathan,296.12,450.45,2026-05-24
+SH00093,Robertsberg,Johnstad,98.5,274.77,2026-06-18
+SH00094,East Sharon,East Johntown,159.86,2484.66,2026-06-06
+SH00095,New Brandiside,Stonechester,283.84,7638.34,2026-05-24
+SH00096,Mayland,Port Alexmouth,38.68,6219.49,2026-06-07
+SH00097,East Jeffreymouth,New Wendy,53.35,6547.79,2026-06-24
+SH00098,Lindseyport,Christensenborough,401.24,5675.92,2026-07-01
+SH00099,South Jake,Riggsberg,329.44,903.92,2026-07-14
+SH00100,West Rebecca,East Kevin,350.14,7759.15,2026-05-31
