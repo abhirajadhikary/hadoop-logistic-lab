@@ -8,18 +8,18 @@ hdfs_path = '/bronze/logistics/shipment_events.json'
 
 # Initialize Kafka Consumer
 consumer = KafkaConsumer(
-    'logistic-events',
+    'shipment-events',
     bootstrap_servers=['localhost:29092'],
     auto_offset_reset='earliest',
     api_version=(2, 5, 0),
     value_deserializer=lambda x: json.loads(x.decode('utf-8'))
 )
 
-print(f"Listening for events on Kafka topic 'logistic-events'...")
+print(f"Listening for events on Kafka topic 'shipment-events'...")
 
 for message in consumer:
     event_data = message.value
-    print(f"Received from Kafka: {event_data.get('event_id', 'Unknown')}")
+    print(f"Received from Kafka: {event_data.get('shipment_id', 'Unknown')}")
     
     # Append the record directly to your HDFS bronze layer
     try:

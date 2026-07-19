@@ -1,0 +1,37 @@
+services:
+
+  spark-master:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.spark
+    container_name: spark-master
+    hostname: spark-master
+    ports:
+      - "8080:8080"  # Spark Master Web UI
+      - "7077:7077"  # Spark Master Port
+    volumes:
+      - ../../data-source:/workspace
+    networks:
+      - hadoop-network
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+
+  spark-worker:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.spark
+    container_name: spark-worker
+    hostname: spark-worker
+    ports:
+      - "8081:8081"  # Spark Worker Web UI
+    volumes:
+      - ../../data-source:/workspace
+    networks:
+      - hadoop-network
+    depends_on:
+      - spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+
+networks:
+  hadoop-network:
+    external: true
+    name: hadoop-network

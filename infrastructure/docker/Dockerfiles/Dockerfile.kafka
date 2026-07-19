@@ -28,4 +28,4 @@ ENV PATH=$PATH:$KAFKA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 WORKDIR /opt/kafka
 
 # Format KRaft storage and start the Kafka server
-CMD /bin/bash -c "bin/kafka-storage.sh format -t \$(bin/kafka-storage.sh random-uuid) -c config/server.properties && bin/kafka-server-start.sh config/server.properties"
+CMD /bin/bash -c "if [ ! -f /opt/kafka/kraft-combined-logs/meta.properties ]; then bin/kafka-storage.sh format -t \$(bin/kafka-storage.sh random-uuid) -c config/server.properties; fi && bin/kafka-server-start.sh config/server.properties"

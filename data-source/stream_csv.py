@@ -11,7 +11,7 @@ producer = KafkaProducer(
 )
 
 csv_file_path = 'dataset/tracking_events.csv'
-topic_name = 'logistic-events'
+topic_name = 'tracking-events'
 
 print(f"Starting stream from {csv_file_path} to Kafka topic '{topic_name}'...")
 

@@ -8,14 +8,14 @@ hdfs_path = '/bronze/logistics/tracking_events.json'
 
 # Initialize Kafka Consumer
 consumer = KafkaConsumer(
-    'logistic-events',
+    'tracking-events',
     bootstrap_servers=['localhost:29092'],
     auto_offset_reset='earliest',
     api_version=(2, 5, 0),
     value_deserializer=lambda x: json.loads(x.decode('utf-8'))
 )
 
-print(f"Listening for events on Kafka topic 'logistic-events'...")
+print(f"Listening for events on Kafka topic 'tracking-events'...")
 
 for message in consumer:
     event_data = message.value
