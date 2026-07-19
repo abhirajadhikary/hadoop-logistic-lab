@@ -10,7 +10,7 @@ services:
       - "8080:8080"  # Spark Master Web UI
       - "7077:7077"  # Spark Master Port
     volumes:
-      - ../../data-source:/workspace
+      - ../../:/workspace
     networks:
       - hadoop-network
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
@@ -24,7 +24,7 @@ services:
     ports:
       - "8081:8081"  # Spark Worker Web UI
     volumes:
-      - ../../data-source:/workspace
+      - ../../:/workspace
     networks:
       - hadoop-network
     depends_on:
