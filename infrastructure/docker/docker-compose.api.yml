@@ -1,0 +1,18 @@
+services:
+  api-service:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.api
+    container_name: api-service
+    networks:
+      - hadoop-network
+    ports:
+      - "8000:8000"
+      - "7860:7860"
+    depends_on:
+      - cassandra
+    restart: always  # <--- Add this line
+
+networks:
+  hadoop-network:
+    external: true

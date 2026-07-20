@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+cassandra-driver
+pandas
+gradio
+requests
+plotly
