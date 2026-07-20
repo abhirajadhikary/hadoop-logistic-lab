@@ -1,0 +1,37 @@
+[2026-07-20T18:30:12.592+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-07-20T18:30:12.608+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: logistics_pipeline.check_kafka manual__2026-07-20T18:30:09.455212+00:00 [queued]>
+[2026-07-20T18:30:12.616+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: logistics_pipeline.check_kafka manual__2026-07-20T18:30:09.455212+00:00 [queued]>
+[2026-07-20T18:30:12.616+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2026-07-20T18:30:12.774+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): check_kafka> on 2026-07-20 18:30:09.455212+00:00
+[2026-07-20T18:30:12.781+0000] {standard_task_runner.py:72} INFO - Started process 167 to run task
+[2026-07-20T18:30:12.784+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'logistics_pipeline', 'check_kafka', 'manual__2026-07-20T18:30:09.455212+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/logistics_pipeline.py', '--cfg-path', '/tmp/tmpnaqe379a']
+[2026-07-20T18:30:12.786+0000] {standard_task_runner.py:105} INFO - Job 7: Subtask check_kafka
+[2026-07-20T18:30:12.838+0000] {task_command.py:467} INFO - Running <TaskInstance: logistics_pipeline.check_kafka manual__2026-07-20T18:30:09.455212+00:00 [running]> on host 101cb4e76f90
+[2026-07-20T18:30:12.927+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='abhiraj' AIRFLOW_CTX_DAG_ID='logistics_pipeline' AIRFLOW_CTX_TASK_ID='check_kafka' AIRFLOW_CTX_EXECUTION_DATE='2026-07-20T18:30:09.455212+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-07-20T18:30:09.455212+00:00'
+[2026-07-20T18:30:12.929+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-07-20T18:30:12.944+0000] {selector.py:236} INFO - IO loop starting (client_id=***-healthcheck)
+[2026-07-20T18:30:12.945+0000] {manager.py:119} INFO - Attempting bootstrap to bootstrap-0 at kafka:9092 (rack None)
+[2026-07-20T18:30:12.946+0000] {manager.py:282} INFO - Initializing connection for node_id bootstrap-0 at kafka:9092 (rack=None)
+[2026-07-20T18:30:12.948+0000] {transport.py:354} INFO - <KafkaTCPTransport [172.18.0.8:9092<-42726]>: connected to <socket.socket fd=17, family=2, type=1, proto=6, laddr=('172.18.0.11', 42726), raddr=('172.18.0.8', 9092)>
+[2026-07-20T18:30:13.011+0000] {connection.py:415} INFO - <KafkaConnection node_id=bootstrap-0 host=[172.18.0.8:9092<-42726] broker_version=unknown (initializing)>: Broker version identified as 4.1
+[2026-07-20T18:30:13.012+0000] {connection.py:375} INFO - <KafkaConnection node_id=bootstrap-0 host=[172.18.0.8:9092<-42726] broker_version=(4, 1) (connected)>: Connected
+[2026-07-20T18:30:13.070+0000] {cluster.py:638} INFO - Updated metadata: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+[2026-07-20T18:30:13.071+0000] {manager.py:162} INFO - Bootstrap complete: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+[2026-07-20T18:30:13.071+0000] {manager.py:165} INFO - Closing bootstrap connection bootstrap-0
+[2026-07-20T18:30:13.071+0000] {transport.py:49} INFO - <KafkaTCPTransport [172.18.0.8:9092<-42726]>: Closing transport
+[2026-07-20T18:30:13.072+0000] {connection.py:242} INFO - <KafkaConnection node_id=bootstrap-0 broker_version=(4, 1) (disconnected)>: Connection closed
+[2026-07-20T18:30:13.072+0000] {cluster.py:120} INFO - Starting metadata refresh loop
+[2026-07-20T18:30:13.073+0000] {manager.py:282} INFO - Initializing connection for node_id 1 at kafka:9092 (rack=None)
+[2026-07-20T18:30:13.078+0000] {transport.py:354} INFO - <KafkaTCPTransport [172.18.0.8:9092<-42730]>: connected to <socket.socket fd=17, family=2, type=1, proto=6, laddr=('172.18.0.11', 42730), raddr=('172.18.0.8', 9092)>
+[2026-07-20T18:30:13.085+0000] {connection.py:375} INFO - <KafkaConnection node_id=1 host=[172.18.0.8:9092<-42730] broker_version=(4, 1) (connected)>: Connected
+[2026-07-20T18:30:13.104+0000] {logging_mixin.py:190} INFO - Kafka OK. Topics: ['tracking-events']
+[2026-07-20T18:30:13.105+0000] {transport.py:49} INFO - <KafkaTCPTransport [172.18.0.8:9092<-42730]>: Closing transport
+[2026-07-20T18:30:13.105+0000] {connection.py:242} INFO - <KafkaConnection node_id=1 broker_version=(4, 1) (disconnected)>: Connection closed
+[2026-07-20T18:30:13.106+0000] {cluster.py:136} INFO - Stopping metadata refresh loop
+[2026-07-20T18:30:13.106+0000] {selector.py:247} INFO - IO loop exited cleanly (client_id=***-healthcheck, stop=True)
+[2026-07-20T18:30:13.107+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-07-20T18:30:13.122+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-07-20T18:30:13.122+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=logistics_pipeline, task_id=check_kafka, run_id=manual__2026-07-20T18:30:09.455212+00:00, execution_date=20260720T183009, start_date=20260720T183012, end_date=20260720T183013
+[2026-07-20T18:30:13.163+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-07-20T18:30:13.190+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-07-20T18:30:13.192+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

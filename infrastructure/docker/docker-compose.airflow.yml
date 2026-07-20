@@ -1,0 +1,123 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: airflow-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+
+    volumes:
+      - airflow-postgres-data:/var/lib/postgresql/data
+
+    networks:
+      - hadoop-network
+
+  airflow-init:
+
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.airflow
+
+    container_name: airflow-init
+
+    depends_on:
+      - postgres
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+
+    volumes:
+      - ../../airflow/dags:/opt/airflow/dags
+      - ../../airflow/logs:/opt/airflow/logs
+      - ../../airflow/plugins:/opt/airflow/plugins
+      - ../../:/workspace
+
+    command: >
+      bash -c "
+      airflow db migrate &&
+      airflow users create
+      --username admin
+      --password admin
+      --firstname Admin
+      --lastname User
+      --role Admin
+      --email admin@example.com
+      "
+
+    networks:
+      - hadoop-network
+
+  airflow-webserver:
+
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.airflow
+
+    container_name: airflow-webserver
+
+    restart: unless-stopped
+
+    depends_on:
+      - airflow-init
+
+    ports:
+      - "8089:8080"
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+
+    volumes:
+      - ../../airflow/dags:/opt/airflow/dags
+      - ../../airflow/logs:/opt/airflow/logs
+      - ../../airflow/plugins:/opt/airflow/plugins
+      - ../../:/workspace
+
+    command: webserver
+
+    networks:
+      - hadoop-network
+
+  airflow-scheduler:
+
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfiles/Dockerfile.airflow
+
+    container_name: airflow-scheduler
+
+    restart: unless-stopped
+
+    depends_on:
+      - airflow-webserver
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+
+    volumes:
+      - ../../airflow/dags:/opt/airflow/dags
+      - ../../airflow/logs:/opt/airflow/logs
+      - ../../airflow/plugins:/opt/airflow/plugins
+      - ../../:/workspace
+
+    command: scheduler
+
+    networks:
+      - hadoop-network
+
+volumes:
+  airflow-postgres-data:
+
+networks:
+  hadoop-network:
+    external: true
+    name: hadoop-network
