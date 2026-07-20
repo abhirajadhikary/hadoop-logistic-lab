@@ -5,3 +5,4 @@ pandas
 gradio
 requests
 plotly
+prometheus-fastapi-instrumentator

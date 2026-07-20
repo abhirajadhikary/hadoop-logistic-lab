@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  # 1. FastAPI Dashboard
+  - job_name: 'fastapi-api'
+    static_configs:
+      - targets: ['api-service:8000']
+
+  # 2. HDFS (NameNode & DataNode)
+  # Note: Requires JMX Exporter configured on these nodes
+  - job_name: 'hdfs'
+    static_configs:
+      - targets: ['namenode:9101', 'datanode:9101']
+
+  # 3. Spark
+  # Note: Requires Spark JMX or PrometheusServlet enabled
+  - job_name: 'spark'
+    static_configs:
+      - targets: ['spark-master:8080']
+
+  # 4. Kafka
+  # Note: Requires JMX Exporter sidecar or agent
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka:9308']

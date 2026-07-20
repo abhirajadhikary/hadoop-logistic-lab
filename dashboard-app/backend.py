@@ -1,11 +1,3 @@
-"""
-backend.py
-----------
-FastAPI service that sits in front of Cassandra and exposes the three
-logistics tables (shipment_snapshot, delivery_performance, route_optimization)
-as JSON for the Gradio dashboard (app.py) to consume.
-"""
-
 import os
 import logging
 from contextlib import asynccontextmanager
@@ -13,6 +5,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from cassandra.cluster import Cluster
+
+from prometheus_fastapi_instrumentator import Instrumentator
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("logistics-backend")
@@ -47,6 +41,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Logistics Dashboard API", lifespan=lifespan)
+
+Instrumentator().instrument(app).expose(app)
 
 # Allow the Gradio frontend (or any local dev tool) to call this API
 app.add_middleware(
