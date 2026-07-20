@@ -16,6 +16,7 @@ services:
 
     ports:
       - "9042:9042"
+      - "9104:9104"
 
     environment:
       CASSANDRA_CLUSTER_NAME: Hadoop-Logistic-Lab
@@ -23,10 +24,14 @@ services:
       CASSANDRA_RACK: rack1
       MAX_HEAP_SIZE: 512M
       HEAP_NEWSIZE: 128M
+      environment:
+      JVM_EXTRA_OPTS: "-javaagent:/opt/jmx_prometheus_javaagent.jar=9104:/opt/jmx-exporter.yml"
 
     volumes:
       - cassandra-data:/var/lib/cassandra
       - ../../cassandra/ingestion/data:/data:ro
+      - ../monitoring/jmx_prometheus_javaagent.jar:/opt/jmx_prometheus_javaagent.jar:ro
+      - ../monitoring/jmx-exporter.yml:/opt/jmx-exporter.yml:ro
 
     healthcheck:
       test: ["CMD-SHELL", "cqlsh -e 'DESCRIBE KEYSPACES' || exit 1"]

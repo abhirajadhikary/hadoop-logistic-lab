@@ -18,6 +18,10 @@ services:
           - "9092:9092"
           - "29092:29092"
           - "9093:9093"
+          - "9308:9308"
+          
+    environment:
+      KAFKA_OPTS: "-javaagent:/opt/jmx_prometheus_javaagent.jar=9308:/opt/jmx-exporter.yml"
 
     volumes:
 
@@ -31,6 +35,9 @@ services:
       - ../../ingestion/kafka:/workspace
 
       - kafka-data:/opt/kafka/kraft-combined-logs
+
+      - ../monitoring/jmx_prometheus_javaagent.jar:/opt/jmx_prometheus_javaagent.jar:ro
+      - ../monitoring/jmx-exporter.yml:/opt/jmx-exporter.yml:ro
 
     networks:
       - hadoop-network

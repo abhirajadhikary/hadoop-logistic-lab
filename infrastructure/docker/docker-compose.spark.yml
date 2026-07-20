@@ -9,8 +9,13 @@ services:
     ports:
       - "8080:8080"  # Spark Master Web UI
       - "7077:7077"  # Spark Master Port
+      - "9102:9102"  # JMX Exporter Port for Prometheus
     volumes:
       - ../../:/workspace
+      - ../monitoring/jmx_prometheus_javaagent.jar:/opt/jmx_prometheus_javaagent.jar:ro
+      - ../monitoring/jmx-exporter.yml:/opt/jmx-exporter.yml:ro
+    environment:
+      SPARK_DAEMON_JAVA_OPTS: "-javaagent:/opt/jmx_prometheus_javaagent.jar=9102:/opt/jmx-exporter.yml"
     networks:
       - hadoop-network
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
@@ -23,8 +28,13 @@ services:
     hostname: spark-worker
     ports:
       - "8081:8081"  # Spark Worker Web UI
+      - "9103:9103"  # JMX Exporter Port for Prometheus
     volumes:
       - ../../:/workspace
+      - ../monitoring/jmx_prometheus_javaagent.jar:/opt/jmx_prometheus_javaagent.jar:ro
+      - ../monitoring/jmx-exporter.yml:/opt/jmx-exporter.yml:ro   
+    environment:
+      SPARK_DAEMON_JAVA_OPTS: "-javaagent:/opt/jmx_prometheus_javaagent.jar=9103:/opt/jmx-exporter.yml"   
     networks:
       - hadoop-network
     depends_on:

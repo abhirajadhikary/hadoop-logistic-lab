@@ -13,15 +13,19 @@ services:
     ports:
       - "9870:9870"
       - "9000:9000"
+      - "9101:9101"
 
     env_file:
       - .env
 
     environment:
       CLUSTER_NAME: hadoop-cluster
+      HADOOP_OPTS: "-javaagent:/opt/jmx_prometheus_javaagent.jar=9101:/opt/jmx-exporter.yml"
 
     volumes:
       - namenode-data:/hadoop/dfs/name
+      - ../monitoring/jmx_prometheus_javaagent.jar:/opt/jmx_prometheus_javaagent.jar:ro
+      - ../monitoring/jmx-exporter.yml:/opt/jmx-exporter.yml:ro
 
     healthcheck:
       test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/9870'"]

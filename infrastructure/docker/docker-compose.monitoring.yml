@@ -5,7 +5,8 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    restart: unless-stopped
     networks:
       - hadoop-network
 
@@ -14,6 +15,7 @@ services:
     container_name: grafana
     ports:
       - "3000:3000"
+    restart: unless-stopped
     depends_on:
       - prometheus
     networks:
@@ -22,3 +24,4 @@ services:
 networks:
   hadoop-network:
     external: true
+    name: hadoop-network
